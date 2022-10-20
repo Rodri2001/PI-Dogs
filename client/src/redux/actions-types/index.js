@@ -1,0 +1,18 @@
+const GET_ALL_DOGS = "GET_ALL_DOGS"
+const GET_DOGS_ID = "GET_DOGS_ID"
+const GET_DOGS_NAME = "GET_DOGS_NAME"
+const GET_TEMPERAMENTS = "GET_TEMPERAMENTS"
+const ADD_DOG = "ADD_DOG"
+const CLEAR_DATA = "CLEAR_DATA"
+
+
+
+
+module.exports = {
+    GET_ALL_DOGS,
+    GET_DOGS_ID,
+    GET_TEMPERAMENTS,
+    ADD_DOG,
+    GET_DOGS_NAME,
+    CLEAR_DATA
+}
