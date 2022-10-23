@@ -15,20 +15,17 @@ module.exports = (sequelize) => {
       varchar: 255,
     },
     height: {
-    type: DataTypes.STRING,
-    varchar: 255,
+    type: DataTypes.INTEGER,
     },
     breeds:{
       type: DataTypes.STRING,
       varchar: 255
     },
     weight: {
-      type: DataTypes.STRING,
-      varchar: 255,
+      type: DataTypes.INTEGER,
     },
     life_span:{
-      type: DataTypes.STRING,
-      varchar: 255,
+      type: DataTypes.INTEGER,
     },
     image: {
       type: DataTypes.STRING,

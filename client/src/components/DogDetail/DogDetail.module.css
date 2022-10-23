@@ -1,0 +1,35 @@
+.dogcontainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(15px);
+}
+
+.dog {
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    border-radius: 1em;
+    box-shadow: 0 0 3vw 3vw #89898967;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
+.img {
+    display: flex;
+    width: 30vw;
+    height: 30vw;
+    object-fit: cover;
+    align-self: center;
+
+}
+
+.description {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: medium;
+}

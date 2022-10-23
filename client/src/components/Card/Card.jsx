@@ -1,16 +1,16 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from "./Card.module.css"
 
 function Card({ id, name, image, temperaments, life_span, height, weight }) {
   console.log(temperaments, 2)
   return (
     <div class={styles.card}>
+      <div class={styles.both}>
       <Link to={`/detail/${id}`}>
         <button>Details</button>
       </Link>
-      <div>
-        <img class={styles.img} alt={image} src={image}></img>
+      <img class={styles.img} alt={image} src={image}></img>
         <div class={styles.description}>
           <h3 class={styles.title}>{name}</h3>
           <div class={styles.text}>

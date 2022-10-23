@@ -1,0 +1,26 @@
+.form {
+    display: flex;
+    width: 300px;
+    padding: 30px;
+    background-color:rgba(128, 128, 128, 0.48);
+    margin: auto;
+    flex-direction: column;
+    margin-top: 10vh;
+    box-shadow: 0 0 6vw 2vw #89898992;
+    backdrop-filter: blur(15px);
+    border-radius: 2em;
+}
+body {
+    width: 100%;
+    background-image: url(../../animated/5.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: slider 25s infinite;
+}
+
+@keyframes slider {
+    0%{background-image: url(../../animated/1.jpg);}
+    25%{background-image: url(../../animated/3.jpg);}
+    50%{background-image: url(../../animated/4.jpg);}
+    75%{background-image: url(../../animated/6.jpg);}
+}

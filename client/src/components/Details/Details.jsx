@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom'
 import { clear, getDogID } from '../../redux/actions'
 import DogDetail from '../DogDetail/DogDetail'
 import styles from './Details.module.css'
+import perrino from '../../img/perrino.png'
+import Loading from '../Loading/Loading'
 
 function Details() {
   let { id } = useParams()
   const dispatch = useDispatch()
-  const [loading, setLoading] = useState(false)
 
   let dog = useSelector(state => state.dogsID)
   useEffect(() => {
@@ -16,30 +17,23 @@ function Details() {
     dispatch(getDogID(id))
     console.log(id)
   }, [dispatch],)
-  
-  console.log(dog, "LALA")
-  if (dog) {
+
+  if (dog.name) {
     return (
-        <DogDetail
-          id={dog.id}
-          name={dog.name}
-          image={dog.image}
-          breeds={dog.breeds}
-          height={dog.height}
-          weight={dog.weight}
-          temperaments={dog.temperaments}
-          life_span={dog.life_span}
-        />
+      <DogDetail
+        id={dog.id}
+        name={dog.name}
+        image={dog.image || perrino}
+        breeds={dog.breeds}
+        height={dog.height}
+        weight={dog.weight}
+        temperaments={dog.temperaments}
+        life_span={dog.life_span}
+      />
     )
   } else {
     return (
-      <div className={styles.loading}>
-        <div className={styles.container}>
-          <div className={styles.detalle}>
-          </div>
-          <h1>Cargando...</h1>
-        </div>
-      </div>
+      <Loading></Loading>
     )
   }
 

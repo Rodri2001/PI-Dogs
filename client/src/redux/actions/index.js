@@ -69,3 +69,9 @@ export function clear() {
    }
 }
 
+export function filter(payload){
+   return {
+      type:"PAGINATE",
+      payload
+    }
+}

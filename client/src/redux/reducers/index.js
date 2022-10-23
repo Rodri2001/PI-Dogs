@@ -1,3 +1,4 @@
+import { filter } from "../actions"
 import { GET_ALL_DOGS, GET_DOGS_ID, GET_TEMPERAMENTS, GET_DOGS_NAME, CLEAR_DATA, ADD_DOG } from "../actions-types"
 
 const initialState = {
@@ -5,6 +6,7 @@ const initialState = {
     dogs: [],
     dogsID: [],
     temperaments: [],
+    paginate:[],
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -38,6 +40,11 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 addDog: action.payload,
+            }
+        case "PAGINATE":
+            return{
+                ...state,
+                paginate: action.payload
             }
         default:
             return { ...state }

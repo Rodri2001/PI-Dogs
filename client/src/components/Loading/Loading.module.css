@@ -1,0 +1,19 @@
+.detalle{
+    display: flex;
+    justify-items: center;
+        width: 25vh;
+        min-height: 25vh;
+        background-image: url(../../img/nervous-dog-spinning.gif);
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-top: 5vw;
+    }
+    
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1vw;
+        color: bisque;
+    }
+    
