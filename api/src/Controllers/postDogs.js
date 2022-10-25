@@ -7,10 +7,11 @@ const postDogs = async (req, res) => {
         let results = await Dog.create({
             name,
             height,
-            weight,
+            weight: weight + " - " + weight + 3,
             life_span,
             breeds,
-            image
+            image,
+            createInDb: true
         })
         temperaments.forEach(async temperament => {
             let temperamentFound = await Temperament.findOne({

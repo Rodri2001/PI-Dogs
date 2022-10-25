@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { clear, getDogBack } from '../../redux/actions'
+import { clear, getDogBack, order } from '../../redux/actions'
 import Card from '../Card/Card'
 import styles from "./Cards.module.css"
 import perrino from '../../img/perrino.png'
 import Loading from '../Loading/Loading'
 
 function Cards() {
+  const dispatch = useDispatch()
+
   let dogs = useSelector(state => state.dogs)
-  let filter = useSelector(state => state.paginate)
-
-  console.log(filter, 3)
-
   const [current, setCurrent] = useState(1);
+  useEffect(() => {
+
+  }, [dispatch, dogs])
+
+  let pagesState = useSelector(state => state.paginate)
+
   const [cardsPerPage, setCardsPerPage] = useState(8);
   const totalCards = dogs.length
-
-  const dispatch = useDispatch()
 
   const pages = []
 
@@ -24,25 +26,19 @@ function Cards() {
     pages.push(i)
   }
 
-
   function paginate(pageNumber) {
+    if (pageNumber > pages.length || pageNumber < 1) { return }
     return setCurrent(pageNumber)
   }
 
-  useEffect(() => {
-    dispatch(getDogBack())
-  }, [dispatch])
-
-
-  if (dogs.length) {
-
+  if (dogs && dogs.length) {
     return (
       <div className={styles.cards}>
-        <div className={styles.cardscontainer}>
-          {dogs && (filter.length ? filter : dogs).map((c, i) => {
+        <div className={styles.cardscontainer} >
+          {dogs && (pagesState.length ? pagesState : dogs).map((c, i) => {
             if (i >= current * 8 - 8 && i < current * 8) {
-              console.log(i)
               return <Card
+                key={c.id}
                 id={c.id}
                 name={c.name}
                 image={c.image || perrino}
@@ -61,7 +57,7 @@ function Cards() {
           <button onClick={() => paginate(current - 1)}>BACK</button>
           {pages.map(page => (
             <div className={styles.paginateButtons} key={page}>
-              <a className={styles.buttons} onClick={() => paginate(page)}>
+              <a className={styles.buttons} onClick={() => paginate(page)} key={page} >
                 {page}
               </a>
             </div>
@@ -80,11 +76,3 @@ function Cards() {
 export default Cards
 
 
-  // id={c.id}
-          // name={c.name}
-          // image={c.image || perrino}
-          // breeds={c.breeds}
-          // height={c.height}
-          // weight={c.weight}
-          // temperaments={c.temperaments}
-          // life_span={c.life_span}

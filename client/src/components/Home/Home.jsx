@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getDogBack } from '../../redux/actions'
 import Cards from '../Cards/Cards'
 import styles from './Home.module.css'
 
 
 function Home() {
-  
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getDogBack())
+    }, [dispatch])
     return (
-        <div class={styles.Home}>
-            <h1 class={styles.title}>Dogs</h1>
+        <div className={styles.Home}>
+            <h1 className={styles.title}>Dogs</h1>
             <Cards />
         </div>
     )

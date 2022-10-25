@@ -28,15 +28,13 @@ function Create() {
   })
 
   useEffect(() => {
-    console.log(state)
     dispatch(getTemperaments())
-  }, [state])
+  }, [])
 
 
 
   function handleChange(e) {
     if (e.target.name === "temperaments") {
-      console.log(e.target.value)
       setState({
         ...state,
         [e.target.name]: [...state.temperaments, e.target.value]
@@ -52,11 +50,12 @@ function Create() {
 
   function handleDelete(e) {
     e.preventDefault()
+    console.log(e.currentTarget.textContent,6)
     setState({
       ...state,
-      temperaments: state.temperaments.filter(t => t === e.target.value)
+      temperaments: state.temperaments.filter(t => t === e.currentTarget.textContent)
     })
-    alert("Temperamentos borrados")
+    console.log(state, "d")
   }
 
   function handleSubmit(e) {
@@ -89,16 +88,16 @@ function Create() {
       {errors.life_span && <p>{errors.life_span}</p>}
       <label> Temperament: </label>
       <select name="temperaments" multiple onChange={(e) => handleChange(e)} >{
-        temperament.map((t) => <option name={t.name}>{t.name}</option>)}
+        temperament.map((t) => <option key={t.name} name={t.name}>{t.name}</option>)}
       </select>
       <p>Added: </p>
       <div>
-        {state.temperaments.length ? state.temperaments.map(t => <div> <button onClick={handleDelete}> {t}</button></div>) : null}
+        {state.temperaments.length ? state.temperaments.map(t => <button onClick={(e) => handleDelete(e)}> {t}</button>) : null}
       </div>
       <div>
 
       </div>
-      <button type="submit">Create Videogame</button>
+      <button type="submit">Create Dog</button>
 
 
     </form>

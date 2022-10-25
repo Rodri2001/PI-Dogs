@@ -15,6 +15,7 @@ const getTemperament = async (req, res) => {
           let dogis = resp[i].temperament
           containers.push(dogis)
         }
+        console.log(containers,2)
         containers = containers.map(e => e = e?.split(','))
         containers = containers.flat().sort()
         containers = containers.map(e => e = e?.replace(' ', ''))

@@ -22,10 +22,13 @@ module.exports = (sequelize) => {
       varchar: 255
     },
     weight: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     life_span:{
       type: DataTypes.INTEGER,
+    },
+    createInDb:{
+      type: DataTypes.BOOLEAN
     },
     image: {
       type: DataTypes.STRING,

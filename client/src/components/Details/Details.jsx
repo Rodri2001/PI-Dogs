@@ -12,6 +12,7 @@ function Details() {
   const dispatch = useDispatch()
 
   let dog = useSelector(state => state.dogsID)
+  console.log(dog)
   useEffect(() => {
     dispatch(clear())
     dispatch(getDogID(id))
@@ -21,6 +22,7 @@ function Details() {
   if (dog.name) {
     return (
       <DogDetail
+        key={dog.id}
         id={dog.id}
         name={dog.name}
         image={dog.image || perrino}

@@ -5,6 +5,14 @@
     backdrop-filter: blur(15px);
 }
 
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    backdrop-filter: blur(15px);
+}
+
 .dog {
     display: flex;
     width: 40%;
@@ -32,4 +40,15 @@
     flex-direction: row;
     justify-content: space-evenly;
     font-size: medium;
+}
+
+.Navbar{
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.491);
+    display: flex;
+    flex-direction: row;
+    height: 5vw;
+    justify-content: space-evenly;
+    align-items: center ;
+    backdrop-filter: blur(15px);
 }
