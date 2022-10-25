@@ -14,7 +14,7 @@ function App() {
     <React.Fragment>
       <Route exact path='/'> <Landing/> </Route>
       <Route exact path="/home"> <Navbar/> <Home/></Route>
-      <Route exact path="/create" ><Navbar/> <Create/> </Route>
+      <Route exact path="/create" > <Create/> </Route>
       <Route exact path="/detail/:id" > <Details/> </Route>
     </React.Fragment>
 
