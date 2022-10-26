@@ -10,6 +10,7 @@ function Card({ id, name, image, temperaments, life_span, height, weight}) {
           <button>Details</button>
         </Link>
         <img className={styles.img} alt={image} src={image} ></img>
+        <div className={styles.botCard}>
         <div className={styles.description}>
           <h3 className={styles.title} key={id}>{name}</h3>
           <div className={styles.text}>
@@ -20,6 +21,7 @@ function Card({ id, name, image, temperaments, life_span, height, weight}) {
               })}
             </ul>
           </div>
+        </div>
         </div>
       </div>
     </div>)

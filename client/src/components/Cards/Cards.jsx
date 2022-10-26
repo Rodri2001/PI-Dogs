@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { clear, getDogBack, order } from '../../redux/actions'
+import { clear, getDogBack, getTemperaments, order } from '../../redux/actions'
 import Card from '../Card/Card'
 import styles from "./Cards.module.css"
 import perrino from '../../img/perrino.png'
@@ -11,9 +11,7 @@ function Cards() {
 
   let dogs = useSelector(state => state.dogs)
   const [current, setCurrent] = useState(1);
-  useEffect(() => {
 
-  }, [dispatch, dogs])
 
   let pagesState = useSelector(state => state.paginate)
 
@@ -30,6 +28,10 @@ function Cards() {
     if (pageNumber > pages.length || pageNumber < 1) { return }
     return setCurrent(pageNumber)
   }
+  useEffect(() => {
+    setCurrent(1)
+    dispatch(getTemperaments())
+  }, [dispatch, dogs])
 
   if (dogs && dogs.length) {
     return (
@@ -66,7 +68,15 @@ function Cards() {
         </div>
       </div>
     )
-  } else {
+  }
+  else if(!dogs){
+    return(
+      <div>
+        <h1>No existe el perrino 🐶😭</h1>
+      </div>
+    )
+  } 
+  else {
     return (
       <Loading></Loading>
     )

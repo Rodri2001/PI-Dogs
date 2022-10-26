@@ -7,7 +7,7 @@ import styles from './Create.module.css'
 function Create() {
 
   useEffect(() => {
-    dispatch(getTemperaments())
+    
   }, [])
   let temperament = useSelector(state => state.temperaments)
   const dispatch = useDispatch()
@@ -35,46 +35,43 @@ function Create() {
       setErrors(
         {
           ...errors,
-          name: "No se puede escribir menos de 4 caracteres",
+          name: "El nombre tiene que tener mas de 4 caracteres",
         }
       )
     } else if (e.target.value.length < 4 && e.target.name === 'breeds') {
       setErrors(
         {
           ...errors,
-          breeds: "No se puede escribir menos de 4 caracteres"
+          breeds: "La raza tiene que tener mas de 4 caracteres"
         }
       )
     } else if (e.target.value < 0 && e.target.name === "height") {
       setErrors(
         {
           ...errors,
-          height: "no se pueden usar numeros negativos"
+          height: "No se pueden usar numeros negativos"
         }
       )
     } else if (e.target.value < 0 && e.target.name === "weight") {
       setErrors(
         {
           ...errors,
-          weight: "no se pueden usar numeros negativos"
+          weight: "No se pueden usar numeros negativos"
         }
       )
     } else if (e.target.value < 0 && e.target.name === "life_span") {
       setErrors(
         {
           ...errors,
-          life_span: "no se pueden usar numeros negativos"
+          life_span: "No se pueden usar numeros negativos"
         }
       )
-    } else {
+    }
+    else {
       setErrors(
         {
           ...errors,
-          breeds: "",
-          name: "",
-          height: "",
-          weight: "",
-          life_span: ""
+          [e.target.name]: ""
         })
     }
   }
@@ -94,9 +91,14 @@ function Create() {
         [e.target.name]: e.target.value
       })
     }
-    if (Object.values(state).every(el => el.length)) {
+    if (Object.values(state).every(el => el.length) && Object.values(errors).every(el => !el.length)) {
       setButton(styles.buttonActive)
+    } 
+    if(Object.values(errors).some(el => el.length))  {
+      console.log("hoola")
+      setButton(styles.button)
     }
+
   }
 
   function handleDelete(e) {
@@ -112,13 +114,16 @@ function Create() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(postDog(state))
-    document.getElementById('form').reset()
-    alert("Perrito Agregado Correctamente")
-    setState({
-      ...state,
-      temperaments: state.temperaments.filter(t => t === e.target.value)
-    })
+    if (Object.values(state).every(el => el.length) && Object.values(errors).every(el => !el.length)) {
+      dispatch(postDog(state))
+      document.getElementById('form').reset()
+      alert("Perrito Agregado Correctamente")
+      setState({
+        ...state,
+        temperaments: [],
+      })
+      setButton(styles.button)
+    }
   }
 
   return (
@@ -132,27 +137,28 @@ function Create() {
         </Link>
       </div>
       <form className={styles.form} id='form' onChange={(e) => handleChange(e)} onSubmit={(e) => handleSubmit(e)}>
-        <label> Name: </label>
+        <label>Nombre:</label>
         <input name="name" onChange={(e) => validate(e)}></input>
         <p className={styles.errors}>{errors.name}</p>
-        <label> Height: </label>
-        <input name="height" type="number" onChange={(e) => validate(e)}></input>
-        <p className={styles.errors}>{errors.height}</p>
-        <label> Weight: </label>
-        <input name="weight" type="number" onChange={(e) => validate(e)} ></input>
-        <p className={styles.errors}>{errors.weight}</p>
-        <label> Breeds: </label>
+        <label>Raza:</label>
         <input name="breeds" onChange={(e) => validate(e)}></input>
         <p className={styles.errors}>{errors.breeds}</p>
-        <label> Life_span: </label>
+        <label>Altura:</label>
+        <input name="height" type="number" onChange={(e) => validate(e)}></input>
+        <p className={styles.errors}>{errors.height}</p>
+        <label>Peso:</label>
+        <input name="weight" type="number" onChange={(e) => validate(e)} ></input>
+        <p className={styles.errors}>{errors.weight}</p>
+        <label>Tiempo de vida:</label>
         <input name="life_span" type="number" onChange={(e) => validate(e)}></input>
         <p className={styles.errors}>{errors.life_span}</p>
-        <label> Temperament: </label>
+        <label>Temperamento: </label>
         <select name="temperaments" multiple  >{
           temperament.map((t) => <option key={t.name} name={t.name}>{t.name}</option>)}
         </select>
-        <p>Added: </p>
+
         <div>
+          {state.temperaments.length ? <p>Click to delete: </p> : null}
           {state.temperaments.length ? state.temperaments.map(t => <button key={t} onClick={(e) => handleDelete(e)}>{t}</button>) : null}
         </div>
         <div>

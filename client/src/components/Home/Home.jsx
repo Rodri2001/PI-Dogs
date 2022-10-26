@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getDogBack } from '../../redux/actions'
+import { clear, filter, getDogBack, paginate, sortName, sortWeight } from '../../redux/actions'
 import Cards from '../Cards/Cards'
 import styles from './Home.module.css'
 

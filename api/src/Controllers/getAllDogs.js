@@ -60,7 +60,7 @@ const getAllDogs = async (req, res) => {
       })
 
   } catch (error) {
-    res.send('poke no anda :c')
+    res.send('No se encontro el perrito')
     console.log(error)
   }
 }

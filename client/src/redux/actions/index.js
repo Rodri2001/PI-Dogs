@@ -50,17 +50,13 @@ export function getTemperaments() {
 
 export function getDogsName(name) {
    return async function (dispatch) {
-      try {
-         await axios.get(`http://localhost:3001/dogs?name=${name}`)
-            .then((r) => {
-               return dispatch({
-                  type: GET_DOGS_NAME,
-                  payload: r.data,
-               })
+      await axios.get(`http://localhost:3001/dogs?name=${name}`)
+         .then((r) => {
+            return dispatch({
+               type: GET_DOGS_NAME,
+               payload: r.data,
             })
-      } catch (error) {
-         alert('Dog Not Found')
-      }
+         })
    }
 }
 

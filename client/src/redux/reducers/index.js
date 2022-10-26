@@ -29,9 +29,11 @@ export default function rootReducer(state = initialState, action) {
                 temperaments: action.payload,
             }
         case GET_DOGS_NAME:
+            console.log(action.payload, "RES")
+            let resp = action.payload.length ? action.payload : false
             return {
                 ...state,
-                dogs: action.payload,
+                dogs: resp,
             }
         case CLEAR_DATA:
             return {

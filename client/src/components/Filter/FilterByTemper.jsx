@@ -9,7 +9,7 @@ export default function FilterByTemper() {
     const allTempers = useSelector((e) => e.temperaments);
 
     useEffect(() => {
-        dispatch(getTemperaments())
+        
     }, [dispatch])
 
     const handleFilterTemper = (e) => {
